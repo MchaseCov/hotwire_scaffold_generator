@@ -1,0 +1,1 @@
+<%%= turbo_stream.prepend "<%= human_name.pluralize.downcase %>", @<%= singular_table_name %> %>

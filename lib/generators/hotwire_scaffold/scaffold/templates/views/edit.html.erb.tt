@@ -1,0 +1,12 @@
+<%%= turbo_frame_tag @<%= singular_table_name %> do %>
+  <h1>Editing <%= human_name.downcase %></h1>
+
+  <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
+
+  <br>
+
+  <div>
+    <%%= link_to "Edit this <%= human_name.downcase %>", <%= edit_helper(type: :path) %> %> |
+    <%%= button_to "Destroy this <%= human_name.downcase %>", <%= model_resource_name(prefix: "@") %>, method: :delete %>
+  </div>
+<%% end %>

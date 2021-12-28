@@ -1,4 +1,4 @@
-class <%= class_name %>Controller < ApplicationController
+class <%= class_name.pluralize %>Controller < ApplicationController
   before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
   # GET /<%= plural_name %>
   def index

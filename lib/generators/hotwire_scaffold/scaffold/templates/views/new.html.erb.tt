@@ -1,0 +1,5 @@
+<%%= turbo_frame_tag id="new_<%= human_name.downcase %>_form" do %>
+<h1>New <%= human_name.downcase %></h1>
+
+<%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
+<%% end %>

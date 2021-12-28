@@ -1,0 +1,70 @@
+class <%= class_name %>Controller < ApplicationController
+  before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
+  # GET /<%= plural_name %>
+  def index
+    @<%= plural_name %> = <%= class_name %>.all
+  end
+
+  # GET /<%= plural_name %>/1
+  def show; end
+
+  # GET /<%= plural_name %>/new
+  def new
+    @<%= singular_table_name %> = <%= class_name %>.new
+  end
+
+  # GET /<%= plural_name %>/1/edit
+  def edit; end
+
+  # POST /<%= plural_name %>
+  def create
+    @<%= singular_table_name %> = <%= class_name %>.new(<%= singular_table_name %>_params)
+
+    respond_to do |format|
+      if @<%= singular_table_name %>.save
+        format.turbo_stream
+        format.html { redirect_to <%= singular_table_name %>_url(@<%= singular_table_name %>), notice: "<%= singular_table_name %> was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /<%plural_name%>/1
+  def update
+    respond_to do |format|
+      if @<%= singular_table_name %>.update(<%= singular_table_name %>_params)
+        format.turbo_stream
+        format.html { redirect_to <%= singular_table_name %>_url(<%= singular_table_name %>), notice: "<%= singular_table_name %> was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /<%plural_name%>/1
+  def destroy
+    @<%= singular_table_name %>.destroy
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to <%= plural_name %>_url, notice: "<%= singular_table_name %> was successfully destroyed." }
+    end
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_<%= singular_table_name %>
+    @<%= singular_table_name %> = <%= class_name %>.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def <%= "#{singular_table_name}_params" %>
+    <%- if attributes_names.empty? -%>
+    params.fetch(:<%= singular_table_name %>, {})
+    <%- else -%>
+    params.require(:<%= singular_table_name %>).permit(<%= permitted_params %>)
+    <%- end -%>
+  end
+end

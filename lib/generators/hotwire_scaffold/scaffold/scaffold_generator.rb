@@ -6,6 +6,7 @@ module HotwireScaffold
 
       # Overrides ScaffoldControllerGenerator
       class_option :jbuilder, type: :boolean, default: false
+      class_option :stimulus, type: :boolean, default: true, desc: "Do not generate a stimulus javascript controller"
 
       # Overrides ScaffoldControllerGenerator
       def create_controller_files
@@ -14,6 +15,8 @@ module HotwireScaffold
       end
 
       def create_stimulus_controller
+        return if no_stimulus?
+
         template "stimulus_controller.js",
                  File.join("app/javascript/controllers", "#{controller_file_name}_controller.js")
       end
@@ -42,6 +45,10 @@ module HotwireScaffold
 
       def available_views
         %w[index edit show new _form]
+      end
+
+      def no_stimulus?
+        !options["stimulus"]
       end
     end
   end

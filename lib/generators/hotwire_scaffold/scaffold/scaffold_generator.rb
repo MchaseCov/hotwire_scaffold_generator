@@ -1,10 +1,11 @@
-require "generators/hotwire_scaffold/generator_helpers"
-
 module HotwireScaffold
   module Generators
     # Custom scaffolding generator
     class ScaffoldGenerator < Rails::Generators::ScaffoldControllerGenerator
       source_root File.expand_path("templates", __dir__)
+
+      # Disable jbuilder by default
+      class_option :jbuilder, type: :boolean, default: false
 
       def create_controller_files
         template "controller.rb",
@@ -20,6 +21,11 @@ module HotwireScaffold
           template "views/#{file_name}.turbo_stream.erb", File.join(directory_path, "#{file_name}.turbo_stream.erb")
         end
         template "views/partial.html.erb", File.join(directory_path, "_#{singular_name}.html.erb")
+      end
+
+      # Disable the use of the default view files and instead use the ones supplied by the gem
+      hook_for :template_engine, as: :scaffold do
+        return
       end
 
       private

@@ -4,12 +4,18 @@ module HotwireScaffold
     class ScaffoldGenerator < Rails::Generators::ScaffoldControllerGenerator
       source_root File.expand_path("templates", __dir__)
 
-      # Disable jbuilder by default
+      # Overrides ScaffoldControllerGenerator
       class_option :jbuilder, type: :boolean, default: false
 
+      # Overrides ScaffoldControllerGenerator
       def create_controller_files
         template "controller.rb",
                  File.join("app/controllers", controller_class_path, "#{controller_file_name}_controller.rb")
+      end
+
+      def create_stimulus_controller
+        template "stimulus_controller.js",
+                 File.join("app/javascript/controllers", "#{controller_file_name}_controller.js")
       end
 
       def copy_view_files
@@ -23,7 +29,7 @@ module HotwireScaffold
         template "views/partial.html.erb", File.join(directory_path, "_#{singular_name}.html.erb")
       end
 
-      # Disable the use of the default view files and instead use the ones supplied by the gem
+      # Overrides ScaffoldControllerGenerator
       hook_for :template_engine, as: :scaffold do
         return
       end

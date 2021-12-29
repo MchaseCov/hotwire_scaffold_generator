@@ -2,6 +2,10 @@
 
 <h1><%= human_name.pluralize %></h1>
 
+<%%= turbo_frame_tag id="new_<%= human_name.downcase %>_form" do %>
+  <%%= link_to "New <%= human_name.downcase %>", <%= new_helper(type: :path) %> %>
+<%% end %>
+
 <div id="<%= plural_table_name %>">
   <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
     <%%= turbo_frame_tag <%= singular_table_name %> do %>
@@ -9,6 +13,4 @@
     <%% end %>
   <%% end %>
 </div>
-<%%= turbo_frame_tag id="new_<%= human_name.downcase %>_form" do %>
-  <%%= link_to "New <%= human_name.downcase %>", <%= new_helper(type: :path) %> %>
-<%% end %>
+

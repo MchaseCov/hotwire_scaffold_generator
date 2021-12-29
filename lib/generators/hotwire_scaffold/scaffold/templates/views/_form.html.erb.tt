@@ -1,5 +1,5 @@
 <div>
-<%%= form_with(model: <%= model_resource_name %>) do |form| %>
+<%%= form_with model: <%= model_resource_name %>, data: { controller: "<%=table_name%>", action: "turbo:submit-end-><%=table_name%>#reset" } do |form| %>
   <%% if <%= singular_table_name %>.errors.any? %>
     <div style="color: red">
       <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>

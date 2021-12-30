@@ -3,7 +3,7 @@
 module HotwireScaffold
   module Generators
     # Custom scaffolding generator
-    class ScaffoldGenerator < Rails::Generators::ScaffoldControllerGenerator
+    class ClientGenerator < Rails::Generators::ScaffoldControllerGenerator
       source_root File.expand_path("templates", __dir__)
 
       # Overrides ScaffoldControllerGenerator

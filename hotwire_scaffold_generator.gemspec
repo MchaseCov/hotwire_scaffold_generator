@@ -8,10 +8,10 @@ Gem::Specification.new do |spec|
   spec.authors = ["Chase Covington"]
   spec.email = ["mchasecov@gmail.com"]
 
-  spec.summary = "A gem to generate a MVC scaffold to quickly get started with Turbo Streams."
-  spec.description = "A gem to generate a MVC scaffold to quickly get started with Turbo Streams. This gem includes the
-  model callbacks, controller actions, and view stream recievers that you need for your model to be broadcasted live
-  when instances are created, updated, and deleted."
+  spec.summary = "A gem to generate a MVC scaffold to quickly get started with client-request format Turbo Streams."
+  spec.description = "A gem to generate a MVC scaffold to quickly get started with Turbo Streams. This scaffold builds
+  on top of the existing Rails generatiors to include the model, controller actions, and Turbo ready-views
+  that you need for your model to be streamed when instances are created, updated, and deleted."
   spec.homepage = "https://github.com/MchaseCov/hotwire_scaffold_generator"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"

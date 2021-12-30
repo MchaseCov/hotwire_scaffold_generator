@@ -1,5 +1,3 @@
-<%%= turbo_frame_tag @<%= singular_table_name %> do %>
 <p style="color: green"><%%= notice %></p>
 
 <%%= render @<%= singular_table_name %> %>
-<%% end %>

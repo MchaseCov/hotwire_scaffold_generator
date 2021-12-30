@@ -7,10 +7,6 @@
 <%% end %>
 
 <div id="<%= plural_table_name %>">
-  <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-    <%%= turbo_frame_tag <%= singular_table_name %> do %>
-      <%%= render <%= singular_table_name %> %>
-    <%% end %>
-  <%% end %>
+<%%= render @<%= plural_table_name %> %>
 </div>
 

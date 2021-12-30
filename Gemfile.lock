@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hotwire_scaffold_generator (1.0.0)
+    hotwire_scaffold_generator (1.0.1)
 
 GEM
   remote: https://rubygems.org/

@@ -1,8 +1,11 @@
-# HotwireScaffoldGenerator
+# Hotwire Scaffold Generator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hotwire_scaffold_generator`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a simple gem that builds off of the existing Rails generators to create Hotwire-ready applications! Currently, there are only two options.
+You can generate either an entire scaffold (full MVC suite), or just the controller and views. 
 
-TODO: Delete this and the text above, and describe your gem
+Currently, the generator is designed to make use of Turbo Stream over client request formats. This means that these generators do not involve the setup for a model to be streamed over websocket, but rather respond with `.turbo_stream.erb` format responses to make use of Turbo Stream. 
+
+I would like to add a scaffold generator that deals with Broadcast as opposed to Client so you have the option, but I need to do more research on that topic. This is my first gem and first time creating Rails generators.
 
 ## Installation
 
@@ -22,13 +25,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After adding the gem to your application, you can now generate the files using `rails g hotwire_scaffold:client` for the full scaffold, or `rails g hotwire_scaffold:client_controller` to skip creating the model and migration.
 
-## Development
+Just like the Rails base generators, if you supply your model's attributes (even with the controller generator) it will automatically include them in the `def foo_params` method of your controller and list them in your view files in the `_partial.html.erb` view. 
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+## Arguments
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+#### --no-stimulus
+In addition to the baseline Rails arguments, you can use `--no-stimulus` to disable the generation of the form reset Stimulus controller that is included. I include this as it is is needed to polish the submission form when using Hotwire, else your forms will not clear out after submission. However you may prefer to have an agnostic approach where you have one form reset controller for all of your methods rather than repeating it multiple times.
+
+I chose to name it after your model, rather than name it a generic name, so that it would not overwrite or conflict any existing controllers you may have.
+
+#### --jbuilder
+the Jbuilder argument is false by default
 
 ## Contributing
 

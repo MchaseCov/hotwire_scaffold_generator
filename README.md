@@ -7,6 +7,16 @@ Currently, the generator is designed to make use of Turbo Stream over client req
 
 I would like to add a scaffold generator that deals with Broadcast as opposed to Client so you have the option, but I need to do more research on that topic. This is my first gem and first time creating Rails generators.
 
+## Demo Video
+
+![A demo gif of what is generated](https://i.imgur.com/ALh6UUC.gif")
+
+
+Here is a quick demo of what you will get out of the box after generating with this gem.
+It is a functional yet simple SPA style combination of Turbo Frames and Streams to build on top of.
+For an MP4 format (higher quality, more FPS, check out https://i.imgur.com/fHA8bFZ.mp4)
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
